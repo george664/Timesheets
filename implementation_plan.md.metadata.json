@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Implementation plan for building a Google Calendar billing categorization app in Next.js. It outlines the tech stack, the use of Google OAuth, the local storage approach for client data, and requests feedback on the necessary environment variables.",
+  "updatedAt": "2026-03-29T12:03:15.772259Z",
+  "requestFeedback": true
+}

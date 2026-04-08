@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* B&W mode: force all colors to pure black, white, or transparent */
+.bw-mode {
+  /* All text becomes black */
+  color: #000 !important;
+}
+
+/* Text colors → black */
+.bw-mode [class*="text-gray-"],
+.bw-mode [class*="text-indigo-"],
+.bw-mode [class*="text-blue-"],
+.bw-mode [class*="text-emerald-"],
+.bw-mode [class*="text-green-"],
+.bw-mode [class*="text-red-"],
+.bw-mode [class*="text-amber-"],
+.bw-mode [class*="text-purple-"],
+.bw-mode [class*="text-pink-"],
+.bw-mode [class*="text-cyan-"],
+.bw-mode [class*="text-orange-"],
+.bw-mode [class*="text-yellow-"],
+.bw-mode [class*="text-teal-"],
+.bw-mode [class*="text-violet-"] {
+  color: #000 !important;
+}
+
+/* White text on dark backgrounds stays white */
+.bw-mode [class*="text-white"] {
+  color: #fff !important;
+}
+
+/* Background tints → white */
+.bw-mode [class*="bg-gray-50"],
+.bw-mode [class*="bg-gray-100"],
+.bw-mode [class*="bg-gray-200"],
+.bw-mode [class*="bg-indigo-50"],
+.bw-mode [class*="bg-indigo-100"],
+.bw-mode [class*="bg-blue-50"],
+.bw-mode [class*="bg-blue-100"],
+.bw-mode [class*="bg-emerald-50"],
+.bw-mode [class*="bg-emerald-100"],
+.bw-mode [class*="bg-green-50"],
+.bw-mode [class*="bg-green-100"],
+.bw-mode [class*="bg-red-50"],
+.bw-mode [class*="bg-amber-50"],
+.bw-mode [class*="bg-purple-50"],
+.bw-mode [class*="bg-teal-50"] {
+  background-color: #fff !important;
+}
+
+/* Dark/colored action backgrounds → black */
+.bw-mode [class*="bg-gray-900"],
+.bw-mode [class*="bg-gray-800"],
+.bw-mode [class*="bg-indigo-600"],
+.bw-mode [class*="bg-indigo-700"],
+.bw-mode [class*="bg-emerald-600"],
+.bw-mode [class*="bg-emerald-700"],
+.bw-mode [class*="bg-blue-600"],
+.bw-mode [class*="bg-blue-700"],
+.bw-mode [class*="bg-red-600"],
+.bw-mode [class*="bg-red-700"] {
+  background-color: #000 !important;
+}
+
+/* Disabled backgrounds → light gray (for contrast) */
+.bw-mode [class*="bg-gray-400"] {
+  background-color: #999 !important;
+}
+
+/* Badges and chips → white bg with black border */
+.bw-mode .rounded-full[class*="bg-green-100"],
+.bw-mode .rounded-full[class*="bg-gray-100"],
+.bw-mode .rounded-full[class*="bg-indigo-100"],
+.bw-mode .rounded-full[class*="bg-gray-200"],
+.bw-mode .rounded-full[class*="bg-blue-100"],
+.bw-mode .rounded-full[class*="bg-emerald-100"],
+.bw-mode .rounded-full[class*="bg-red-100"],
+.bw-mode .rounded-full[class*="bg-amber-100"] {
+  background-color: #fff !important;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+}
+
+/* Borders → black */
+.bw-mode [class*="border-gray-"],
+.bw-mode [class*="border-indigo-"],
+.bw-mode [class*="border-blue-"],
+.bw-mode [class*="border-green-"],
+.bw-mode [class*="border-emerald-"],
+.bw-mode [class*="border-red-"] {
+  border-color: #000 !important;
+}
+
+/* Divide lines → black */
+.bw-mode [class*="divide-gray-"] > :not(:last-child) {
+  border-color: #000 !important;
+}
+
+/* Ring/focus → black */
+.bw-mode [class*="ring-indigo-"],
+.bw-mode [class*="ring-blue-"],
+.bw-mode [class*="ring-emerald-"] {
+  --tw-ring-color: #000 !important;
+}
+
+/* Shadows → sharper black */
+.bw-mode [class*="shadow-"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Chart/SVG colors → grayscale with high contrast */
+.bw-mode svg {
+  filter: grayscale(1) contrast(2);
+}
+
+/* Table header backgrounds */
+.bw-mode thead[class*="bg-gray-50"],
+.bw-mode thead .bg-gray-50 {
+  background-color: #fff !important;
+}
+
+/* Nav and white backgrounds stay white */
+.bw-mode nav,
+.bw-mode .bg-white {
+  background-color: #fff !important;
+}
+
+/* Hover states */
+.bw-mode [class*="hover:bg-gray-"]:hover,
+.bw-mode [class*="hover:bg-indigo-"]:hover {
+  background-color: #eee !important;
+}
+
+/* Calendar color dots */
+.bw-mode span[style*="background-color"] {
+  filter: grayscale(1) contrast(3);
+}
