@@ -58,21 +58,23 @@ function HomeContent({ session }: { session: any }) {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
-    <div className={`min-h-screen bg-gray-50 text-gray-900 ${settings.bwMode ? "bw-mode" : ""}`}>
+    <div className={`min-h-screen bg-gray-50 text-gray-900 ${settings.bwMode ? "bw-mode" : ""} ${settings.darkMode ? "dark-mode" : ""}`}>
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center gap-3">
-              <Calendar className="w-6 h-6 text-indigo-600" />
-              <span className="font-bold text-xl tracking-tight">{t("billingSync", lang)}</span>
-              <div className="relative ml-2">
+            <div className="flex items-center gap-6 flex-1">
+              <div className="flex items-center gap-3 w-72 flex-shrink-0">
+                <Calendar className="w-6 h-6 text-indigo-600" />
+                <span className="font-bold text-xl tracking-tight">{t("billingSync", lang)}</span>
+              </div>
+              <div className="relative">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t("searchEvents", lang)}
-                  className="w-48 pl-8 pr-7 py-1.5 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
+                  className="w-96 pl-8 pr-7 py-1.5 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors"
                 />
                 {searchQuery && (
                   <button
@@ -127,7 +129,7 @@ function HomeContent({ session }: { session: any }) {
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Dashboard />
+        <Dashboard onOpenSettings={() => setShowSettings(true)} />
       </main>
 
       <SettingsModal open={showSettings} onClose={() => setShowSettings(false)} />

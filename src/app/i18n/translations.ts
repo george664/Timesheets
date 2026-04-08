@@ -1,3 +1,5 @@
+import { Locale } from "date-fns";
+import { enUS, fr, es } from "date-fns/locale";
 import { Language } from "@/app/types/settings";
 
 const translations = {
@@ -31,6 +33,7 @@ const translations = {
 
   // Sidebar
   categories: { en: "Categories", fr: "Catégories", es: "Categorías" },
+  author: { en: "Author", fr: "Auteur", es: "Autor" },
   clear: { en: "Clear", fr: "Effacer", es: "Limpiar" },
   fetchToSeeCategories: {
     en: "Fetch events to see categories",
@@ -42,6 +45,7 @@ const translations = {
   to: { en: "to", fr: "au", es: "al" },
   fetching: { en: "Fetching...", fr: "Chargement...", es: "Cargando..." },
   fetch: { en: "Fetch", fr: "Charger", es: "Cargar" },
+  weeks: { en: "Select weeks", fr: "Sélectionner semaines", es: "Seleccionar semanas" },
 
   // Summary cards
   totalEvents: { en: "Total Events", fr: "Total événements", es: "Total eventos" },
@@ -52,6 +56,24 @@ const translations = {
   Total: { en: "Total", fr: "Total", es: "Total" },
   billable: { en: "billable", fr: "facturable", es: "facturable" },
 
+  // All-day events
+  includeAllDay: { en: "Include all-day events", fr: "Inclure les événements journée", es: "Incluir eventos de día completo" },
+  allDayHours: { en: "Hours per day", fr: "Heures par jour", es: "Horas por día" },
+
+  // Column visibility
+  copyWithHeaders: { en: "Copy with headers", fr: "Copier avec en-têtes", es: "Copiar con encabezados" },
+  tableColumns: { en: "Table Columns", fr: "Colonnes du tableau", es: "Columnas de la tabla" },
+  colDate: { en: "Date", fr: "Date", es: "Fecha" },
+  colStartTime: { en: "Start", fr: "Début", es: "Inicio" },
+  colEndTime: { en: "End", fr: "Fin", es: "Fin" },
+  colDuration: { en: "Duration", fr: "Durée", es: "Duración" },
+  colTitle: { en: "Title", fr: "Titre", es: "Título" },
+  colDescription: { en: "Description", fr: "Description", es: "Descripción" },
+  colGuests: { en: "Guests", fr: "Invités", es: "Invitados" },
+  colLocation: { en: "Location", fr: "Lieu", es: "Ubicación" },
+  colMonthNumber: { en: "Month #", fr: "Mois n°", es: "N° mes" },
+  colWeekNumber: { en: "Week #", fr: "Semaine n°", es: "N° semana" },
+
   // Table & actions
   eventsTitle: { en: "Events", fr: "Événements", es: "Eventos" },
   autoCopyIs: { en: "Auto-copy is", fr: "Copie auto", es: "Auto-copia" },
@@ -61,7 +83,7 @@ const translations = {
   date: { en: "Date", fr: "Date", es: "Fecha" },
   duration: { en: "Duration", fr: "Durée", es: "Duración" },
   eventTitle: { en: "Event Title", fr: "Titre", es: "Título" },
-  client: { en: "Client", fr: "Client", es: "Cliente" },
+  client: { en: "Category", fr: "Catégorie", es: "Categoría" },
   clientMatch: { en: "Client", fr: "Client", es: "Cliente" },
   hrs: { en: "Hrs", fr: "Hrs", es: "Hrs" },
   amount: { en: "Amount", fr: "Montant", es: "Monto" },
@@ -116,6 +138,8 @@ const translations = {
   language: { en: "Language", fr: "Langue", es: "Idioma" },
   bwMode: { en: "B&W Mode", fr: "Mode N&B", es: "Modo B&N" },
   bwModeHint: { en: "Black and white interface", fr: "Interface noir et blanc", es: "Interfaz blanco y negro" },
+  darkMode: { en: "Dark Mode", fr: "Mode sombre", es: "Modo oscuro" },
+  darkModeHint: { en: "Dark background interface", fr: "Interface fond sombre", es: "Interfaz de fondo oscuro" },
   excludedKeywords: { en: "Excluded Keywords", fr: "Mots-clés exclus", es: "Palabras clave excluidas" },
   excludedKeywordsPlaceholder: { en: "Lunch, Personal, OOO", fr: "Lunch, Personnel, ABS", es: "Almuerzo, Personal, AUS" },
   excludedKeywordsHint: {
@@ -151,6 +175,12 @@ export type TranslationKey = keyof typeof translations;
 
 export function t(key: TranslationKey, lang: Language): string {
   return translations[key][lang];
+}
+
+export function getDateLocale(lang: Language): Locale {
+  if (lang === "fr") return fr;
+  if (lang === "es") return es;
+  return enUS;
 }
 
 export function getMonths(lang: Language): string[] {

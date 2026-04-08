@@ -25,6 +25,75 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Dark mode */
+.dark-mode,
+.dark-mode [class*="bg-gray-50"] {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+}
+
+.dark-mode nav,
+.dark-mode [class*="bg-white"] {
+  background-color: #1f2937 !important;
+}
+
+.dark-mode [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+.dark-mode [class*="bg-gray-200"],
+.dark-mode [class*="bg-gray-300"] {
+  background-color: #4b5563 !important;
+}
+
+.dark-mode [class*="text-gray-900"],
+.dark-mode [class*="text-gray-800"],
+.dark-mode [class*="text-gray-700"] {
+  color: #f9fafb !important;
+}
+
+.dark-mode [class*="text-gray-600"],
+.dark-mode [class*="text-gray-500"] {
+  color: #d1d5db !important;
+}
+
+.dark-mode [class*="text-gray-400"] {
+  color: #6b7280 !important;
+}
+
+.dark-mode [class*="border-gray-"] {
+  border-color: #374151 !important;
+}
+
+.dark-mode [class*="divide-gray-"] > :not(:last-child) {
+  border-color: #374151 !important;
+}
+
+.dark-mode [class*="hover:bg-gray-"]:hover,
+.dark-mode [class*="hover:bg-indigo-"]:hover {
+  background-color: #374151 !important;
+}
+
+.dark-mode [class*="shadow-"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-mode thead [class*="bg-gray-50"] {
+  background-color: #1f2937 !important;
+}
+
+.dark-mode span[style*="background-color"] {
+  filter: brightness(0.85);
+}
+
 /* B&W mode: force all colors to pure black, white, or transparent */
 .bw-mode {
   /* All text becomes black */

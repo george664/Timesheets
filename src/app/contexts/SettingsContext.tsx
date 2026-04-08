@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { AppSettings, DEFAULT_SETTINGS } from "@/app/types/settings";
+import { AppSettings, DEFAULT_SETTINGS, DEFAULT_VISIBLE_COLUMNS } from "@/app/types/settings";
 
 const STORAGE_KEY = "billing_app_settings";
 
@@ -34,7 +34,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        setSettings({ ...DEFAULT_SETTINGS, ...parsed });
+        setSettings({
+          ...DEFAULT_SETTINGS,
+          ...parsed,
+          visibleColumns: { ...DEFAULT_VISIBLE_COLUMNS, ...parsed.visibleColumns },
+        });
       } catch {
         setSettings(DEFAULT_SETTINGS);
       }
