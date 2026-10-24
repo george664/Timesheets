@@ -1,231 +1,177 @@
 @import "tailwindcss";
 
+/*
+ * Colors are semantic tokens, so components never name a palette color.
+ * Dark mode and black & white mode are just different values for the same names.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #f9fafb;
+  --surface: #ffffff;
+  --muted: #f3f4f6;
+  --muted-strong: #e5e7eb;
+  --line: #e5e7eb;
+
+  --ink: #111827;
+  --ink-2: #4b5563;
+  --ink-3: #6b7280;
+
+  --primary: #111827;
+  --primary-hover: #1f2937;
+  --primary-ink: #ffffff;
+
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-ink: #ffffff;
+  --accent-soft: #eef2ff;
+  --accent-soft-ink: #312e81;
+  --accent-icon-bg: #e0e7ff;
+
+  --info: #2563eb;
+  --info-soft: #eff6ff;
+  --info-soft-ink: #1e3a8a;
+  --info-icon-bg: #dbeafe;
+
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --canvas: #111827;
+  --surface: #1f2937;
+  --muted: #374151;
+  --muted-strong: #4b5563;
+  --line: #374151;
+
+  --ink: #f9fafb;
+  --ink-2: #d1d5db;
+  --ink-3: #9ca3af;
+
+  --primary: #e5e7eb;
+  --primary-hover: #f9fafb;
+  --primary-ink: #111827;
+
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --accent-ink: #111827;
+  --accent-soft: #2b2f6b;
+  --accent-soft-ink: #e0e7ff;
+  --accent-icon-bg: #3b3f86;
+
+  --info: #60a5fa;
+  --info-soft: #1e3a5f;
+  --info-soft-ink: #dbeafe;
+  --info-icon-bg: #27508a;
+
+  --danger: #f87171;
+  --danger-soft: #3b1d1d;
+
+  color-scheme: dark;
+}
+
+:root[data-bw="true"] {
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --muted: #efefef;
+  --muted-strong: #d9d9d9;
+  --line: #000000;
+
+  --ink: #000000;
+  --ink-2: #000000;
+  --ink-3: #444444;
+
+  --primary: #000000;
+  --primary-hover: #222222;
+  --primary-ink: #ffffff;
+
+  --accent: #000000;
+  --accent-hover: #222222;
+  --accent-ink: #ffffff;
+  --accent-soft: #efefef;
+  --accent-soft-ink: #000000;
+  --accent-icon-bg: #d9d9d9;
+
+  --info: #000000;
+  --info-soft: #efefef;
+  --info-soft-ink: #000000;
+  --info-icon-bg: #d9d9d9;
+
+  --danger: #000000;
+  --danger-soft: #ffffff;
+}
+
+:root[data-bw="true"][data-theme="dark"] {
+  --canvas: #000000;
+  --surface: #000000;
+  --muted: #1a1a1a;
+  --muted-strong: #333333;
+  --line: #ffffff;
+
+  --ink: #ffffff;
+  --ink-2: #ffffff;
+  --ink-3: #bbbbbb;
+
+  --primary: #ffffff;
+  --primary-hover: #dddddd;
+  --primary-ink: #000000;
+
+  --accent: #ffffff;
+  --accent-hover: #dddddd;
+  --accent-ink: #000000;
+  --accent-soft: #1a1a1a;
+  --accent-soft-ink: #ffffff;
+  --accent-icon-bg: #333333;
+
+  --info: #ffffff;
+  --info-soft: #1a1a1a;
+  --info-soft-ink: #ffffff;
+  --info-icon-bg: #333333;
+
+  --danger: #ffffff;
+  --danger-soft: #000000;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-line: var(--line);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-ink);
+  --color-accent-icon-bg: var(--accent-icon-bg);
+
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-ink: var(--info-soft-ink);
+  --color-info-icon-bg: var(--info-icon-bg);
+
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
 }
 
-/* Dark mode */
-.dark-mode,
-.dark-mode [class*="bg-gray-50"] {
-  background-color: #111827 !important;
-  color: #f9fafb !important;
-}
-
-.dark-mode nav,
-.dark-mode [class*="bg-white"] {
-  background-color: #1f2937 !important;
-}
-
-.dark-mode [class*="bg-gray-100"] {
-  background-color: #374151 !important;
-}
-
-.dark-mode [class*="bg-gray-200"],
-.dark-mode [class*="bg-gray-300"] {
-  background-color: #4b5563 !important;
-}
-
-.dark-mode [class*="text-gray-900"],
-.dark-mode [class*="text-gray-800"],
-.dark-mode [class*="text-gray-700"] {
-  color: #f9fafb !important;
-}
-
-.dark-mode [class*="text-gray-600"],
-.dark-mode [class*="text-gray-500"] {
-  color: #d1d5db !important;
-}
-
-.dark-mode [class*="text-gray-400"] {
-  color: #6b7280 !important;
-}
-
-.dark-mode [class*="border-gray-"] {
-  border-color: #374151 !important;
-}
-
-.dark-mode [class*="divide-gray-"] > :not(:last-child) {
-  border-color: #374151 !important;
-}
-
-.dark-mode [class*="hover:bg-gray-"]:hover,
-.dark-mode [class*="hover:bg-indigo-"]:hover {
-  background-color: #374151 !important;
-}
-
-.dark-mode [class*="shadow-"] {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
-}
-
-.dark-mode input,
-.dark-mode select,
-.dark-mode textarea {
-  background-color: #374151 !important;
-  color: #f9fafb !important;
-  border-color: #4b5563 !important;
-}
-
-.dark-mode thead [class*="bg-gray-50"] {
-  background-color: #1f2937 !important;
-}
-
-.dark-mode span[style*="background-color"] {
-  filter: brightness(0.85);
-}
-
-/* B&W mode: force all colors to pure black, white, or transparent */
-.bw-mode {
-  /* All text becomes black */
-  color: #000 !important;
-}
-
-/* Text colors → black */
-.bw-mode [class*="text-gray-"],
-.bw-mode [class*="text-indigo-"],
-.bw-mode [class*="text-blue-"],
-.bw-mode [class*="text-emerald-"],
-.bw-mode [class*="text-green-"],
-.bw-mode [class*="text-red-"],
-.bw-mode [class*="text-amber-"],
-.bw-mode [class*="text-purple-"],
-.bw-mode [class*="text-pink-"],
-.bw-mode [class*="text-cyan-"],
-.bw-mode [class*="text-orange-"],
-.bw-mode [class*="text-yellow-"],
-.bw-mode [class*="text-teal-"],
-.bw-mode [class*="text-violet-"] {
-  color: #000 !important;
-}
-
-/* White text on dark backgrounds stays white */
-.bw-mode [class*="text-white"] {
-  color: #fff !important;
-}
-
-/* Background tints → white */
-.bw-mode [class*="bg-gray-50"],
-.bw-mode [class*="bg-gray-100"],
-.bw-mode [class*="bg-gray-200"],
-.bw-mode [class*="bg-indigo-50"],
-.bw-mode [class*="bg-indigo-100"],
-.bw-mode [class*="bg-blue-50"],
-.bw-mode [class*="bg-blue-100"],
-.bw-mode [class*="bg-emerald-50"],
-.bw-mode [class*="bg-emerald-100"],
-.bw-mode [class*="bg-green-50"],
-.bw-mode [class*="bg-green-100"],
-.bw-mode [class*="bg-red-50"],
-.bw-mode [class*="bg-amber-50"],
-.bw-mode [class*="bg-purple-50"],
-.bw-mode [class*="bg-teal-50"] {
-  background-color: #fff !important;
-}
-
-/* Dark/colored action backgrounds → black */
-.bw-mode [class*="bg-gray-900"],
-.bw-mode [class*="bg-gray-800"],
-.bw-mode [class*="bg-indigo-600"],
-.bw-mode [class*="bg-indigo-700"],
-.bw-mode [class*="bg-emerald-600"],
-.bw-mode [class*="bg-emerald-700"],
-.bw-mode [class*="bg-blue-600"],
-.bw-mode [class*="bg-blue-700"],
-.bw-mode [class*="bg-red-600"],
-.bw-mode [class*="bg-red-700"] {
-  background-color: #000 !important;
-}
-
-/* Disabled backgrounds → light gray (for contrast) */
-.bw-mode [class*="bg-gray-400"] {
-  background-color: #999 !important;
-}
-
-/* Badges and chips → white bg with black border */
-.bw-mode .rounded-full[class*="bg-green-100"],
-.bw-mode .rounded-full[class*="bg-gray-100"],
-.bw-mode .rounded-full[class*="bg-indigo-100"],
-.bw-mode .rounded-full[class*="bg-gray-200"],
-.bw-mode .rounded-full[class*="bg-blue-100"],
-.bw-mode .rounded-full[class*="bg-emerald-100"],
-.bw-mode .rounded-full[class*="bg-red-100"],
-.bw-mode .rounded-full[class*="bg-amber-100"] {
-  background-color: #fff !important;
-  border: 1px solid #000 !important;
-  color: #000 !important;
-}
-
-/* Borders → black */
-.bw-mode [class*="border-gray-"],
-.bw-mode [class*="border-indigo-"],
-.bw-mode [class*="border-blue-"],
-.bw-mode [class*="border-green-"],
-.bw-mode [class*="border-emerald-"],
-.bw-mode [class*="border-red-"] {
-  border-color: #000 !important;
-}
-
-/* Divide lines → black */
-.bw-mode [class*="divide-gray-"] > :not(:last-child) {
-  border-color: #000 !important;
-}
-
-/* Ring/focus → black */
-.bw-mode [class*="ring-indigo-"],
-.bw-mode [class*="ring-blue-"],
-.bw-mode [class*="ring-emerald-"] {
-  --tw-ring-color: #000 !important;
-}
-
-/* Shadows → sharper black */
-.bw-mode [class*="shadow-"] {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Chart/SVG colors → grayscale with high contrast */
-.bw-mode svg {
-  filter: grayscale(1) contrast(2);
-}
-
-/* Table header backgrounds */
-.bw-mode thead[class*="bg-gray-50"],
-.bw-mode thead .bg-gray-50 {
-  background-color: #fff !important;
-}
-
-/* Nav and white backgrounds stay white */
-.bw-mode nav,
-.bw-mode .bg-white {
-  background-color: #fff !important;
-}
-
-/* Hover states */
-.bw-mode [class*="hover:bg-gray-"]:hover,
-.bw-mode [class*="hover:bg-indigo-"]:hover {
-  background-color: #eee !important;
-}
-
-/* Calendar color dots */
-.bw-mode span[style*="background-color"] {
+/* Calendar color dots lose their color in black & white mode. */
+:root[data-bw="true"] .calendar-dot {
   filter: grayscale(1) contrast(3);
 }

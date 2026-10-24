@@ -1,38 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Timesheets
 
-## Getting Started
+Turns Google Calendar events into billable hours. Sign in with Google, pick a date range, and see hours per category and per organizer, then copy the table into a spreadsheet or export a CSV.
 
-First, run the development server:
+Nothing is stored on a server. Events are fetched on demand, and settings are kept in your browser.
+
+## How events are categorized
+
+An event belongs to a category when its title starts with a single word followed by a colon and a space:
+
+| Title                    | Category | Shown as      |
+| ------------------------ | -------- | ------------- |
+| `UWCC: Weekly sync`      | `UWCC`   | `Weekly sync` |
+| `Team lunch: Friday`     | none     | unchanged     |
+| `Dentist`                | none     | unchanged     |
+
+All-day events are left out unless you turn them on in Settings, where each day counts as a set number of hours.
+
+## Setup
+
+1. Create an OAuth client in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) (type "Web application"), enable the Google Calendar API, and add `http://localhost:3000/api/auth/callback/google` as a redirect URI.
+2. Copy `.env.example` to `.env.local` and fill it in.
+3. Install and run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app only asks for read-only access to your calendars.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Command             | What it does                  |
+| ------------------- | ----------------------------- |
+| `npm run dev`       | Start the dev server          |
+| `npm run build`     | Production build              |
+| `npm run lint`      | ESLint                        |
+| `npm run typecheck` | TypeScript, no emit           |
+| `npm test`          | Unit tests (Vitest)           |
 
-To learn more about Next.js, take a look at the following resources:
+## Layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/            Next.js routes: the page, and the auth and calendar API routes
+  components/     UI: dashboard, sidebar, range picker, events table, settings
+  hooks/          Settings store, calendar and event loading
+  lib/            Plain logic with tests: categorizing, filtering, dates, export, Google access
+  i18n/           English, French and Spanish strings
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Timesheets
-# Timesheets
+Built with Next.js 16, React 19, Tailwind CSS 4 and NextAuth 4. Next.js 16 differs from earlier versions; see `AGENTS.md`.
